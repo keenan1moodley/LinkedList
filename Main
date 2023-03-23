@@ -1,0 +1,86 @@
+package com.company;
+
+import com.company.LinkedListK;
+import org.junit.Assert;
+import org.junit.ComparisonFailure;
+
+public class Main {
+    private static int score = 0;
+    private static int tests = 0;
+
+    public static void main(String[] args) {
+        LinkedListK km = new LinkedListK();
+
+        // Insertion and toString
+        km.addNode(5);
+        km.addNode(7);
+        km.addNode(10);
+        check("Insertion and toString", "5, 7, 10", km.toString());
+
+        // Mid-point insertion
+        /* km.addToPos(1, 22);
+        check("Mid-point insertion", "5, 22, 7, 10", km.toString());
+
+        // Tail insertion
+        km.addToPos(3, 50);
+        check("Tail insertion", "5, 22, 7, 50, 10", km.toString()); */
+
+        // Head insertion
+        km.addToHead(1);
+        check("Head insertion", "1, 5, 22, 7, 50, 10", km.toString());
+
+        // Check reverse output
+        check("Reverse output", "10, 50, 7, 22, 5, 1", km.reverseOutput());
+
+        // Check mid-point deletion
+        /*km.delete(7);
+        check("Mid-point deletion", "1, 5, 22, 50, 10", km.toString());
+
+        // Head deletion
+        km.delete(1);
+        check("Head deletion", "5, 22, 50, 10", km.toString());
+
+        // Tail deletion
+        km.delete(10);
+        check("Head deletion", "5, 22, 50", km.toString()); */
+
+        // Insertion and toString test 2
+        km.addNode(33);
+        km.addNode(44);
+        km.addNode(77);
+
+        check("Insertion and toString test 2", "5, 22, 50, 33, 44, 77", km.toString());
+
+        // Check reverse output 2
+        System.out.println(km.reverseOutput());
+        check("Reverse output test 2", "77, 44, 33, 50, 22, 5", km.reverseOutput());
+
+        // Check change data
+        km.changeData(5,10);
+        check("Tail change", "55, 44, 33 , 50, 22, 5");
+
+        // Check change data
+        km.changeData(55,3);
+        check("Head change", "3, 44, 33 , 50, 22, 5");
+
+        // Check change data
+        km.changeData(33,2);
+        check("Mid-point change", "55, 44, 33 , 50, 22, 5");
+
+
+
+        System.out.println("\nFinal Score:" + score + "/" + tests);
+    }
+
+    public static void check(String test, String expected, String actual){
+        tests += 1;
+        try {
+            Assert.assertEquals(expected, actual);
+            System.out.println("✓   " + test + " passed.");
+            score += 1;
+        }
+        catch (ComparisonFailure e){
+            System.out.println("x   " + test + " failed.");
+        }
+    }
+}
