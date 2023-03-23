@@ -1,0 +1,124 @@
+package com.company;
+
+public class LinkedListK {
+    private Node head;
+
+    public LinkedListK() {
+
+    }
+    public void addNode(int data){
+        Node newNode = new Node(data);
+
+        //check if the head is null
+        if(head == null){
+            head = newNode;
+        }
+        else {
+            // Look for null pointer
+            Node currentNode = head;
+
+            while (currentNode.getNext() != null) {
+                currentNode = currentNode.getNext();
+            }
+            // we now know the current node is pointing to null = end of the list
+            currentNode.setNext(newNode);
+        }
+    }
+    public String toString(){
+        String data = " ";
+        // Look for current pointer
+        Node currentNode = head;
+        while(currentNode != null){
+            data = data + currentNode.getData() + ", ";
+            currentNode = currentNode.getNext();
+        }
+        data = data.substring(0,data.length()-2);
+        return data;
+    }
+
+
+    public void setHead(Node head) {
+        this.head = head;
+    }
+
+    private Node getHead() {
+        return head;
+    }
+    public void addToHead(int data){
+        Node newHead = new Node(data);
+
+        newHead.setNext(head);
+        head = newHead;
+    }
+    public void addToPos(int pos, int data)
+    {
+        // create new Node
+        Node newNode = new Node(data);
+
+        if(pos == 0){
+            addToHead(data);
+        }
+        else {
+            // Loop through list to find position
+            Node currentNode = head;
+            for (int i = 0; i < pos - 1; i++) {
+                // check to see if position goes beyond end of list
+                if (currentNode.getNext() != null) {
+                    currentNode = currentNode.getNext();
+                } else {
+                    break;
+                }
+
+                currentNode = currentNode.getNext();
+            }
+            newNode.setNext(currentNode.getNext());
+            currentNode.setNext(newNode);
+        }
+    }
+    public int changeData(int data, int newData)
+    {
+        Node nNode = new Node(newData);
+            // Loop through list to find value
+        Node currentNode = head;
+        for (int i = 0; i < data - 1; i++) {
+                // check to see if position goes beyond end of list, otherwise set data to newData
+                if (currentNode.getNext().equals(data))
+                {
+                    currentNode.setData(nNode.getData());
+                }
+                else
+                {
+                    break;
+                }
+        }
+        return currentNode.getData();
+    }
+
+    public String reverseOutput() {
+
+        Node currentNode = head;
+        while (currentNode != null) {
+            currentNode = currentNode.getNext();
+        }
+        while (currentNode != head) {
+            System.out.println(currentNode.getPrevious());
+        }
+        return reverseOutput();
+    }
+
+    public void delete(int data) {
+
+        // Initialize current Node to head
+        Node currentNode = head;
+        // loop through the list
+        while (currentNode.getNext().equals(data))
+        {
+            // Get previous Node and set it to the next Node
+            currentNode.getPrevious().setNext() = currentNode.getPrevious();
+            currentNode.getNext().setPrevious() = currentNode.getPrevious();
+        }
+
+
+    }
+
+}
